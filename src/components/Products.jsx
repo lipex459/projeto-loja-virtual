@@ -1,51 +1,63 @@
-const Products = ({setCartCount}) => {
+import Rating from './Rating'
 
-    const addToCart = () => {
-        setCartCount(prev => prev + 1)
-    }
+const products = [
+  {
+    id: 'featured-tenis',
+    title: 'Tênis Esportivo',
+    category: 'Calçados',
+    price: 299.9,
+    rating: 4.5,
+    image: 'https://placehold.co/240x240/aa3bff/ffffff?text=Tenis',
+  },
+  {
+    id: 'featured-fone',
+    title: 'Fone de Ouvido Bluetooth',
+    category: 'Eletrônicos',
+    price: 149.9,
+    rating: 4.8,
+    image: 'https://placehold.co/240x240/3b82f6/ffffff?text=Fone',
+  },
+  {
+    id: 'featured-mochila',
+    title: 'Mochila para Notebook',
+    category: 'Acessórios',
+    price: 189.9,
+    rating: 4.2,
+    image: 'https://placehold.co/240x240/22c55e/ffffff?text=Mochila',
+  },
+  {
+    id: 'featured-relogio',
+    title: 'Relógio Smartwatch',
+    category: 'Eletrônicos',
+    price: 349.9,
+    rating: 4.7,
+    image: 'https://placehold.co/240x240/f97316/ffffff?text=Relogio',
+  },
+]
 
-     return (
-        <section id="produtos" className="products">
-            <h2>Produtos em destaque</h2>
-            <div className="product-list">
-                <div className="product-card">
-                    <img src="https://placehold.co/240x240/aa3bff/ffffff?text=Tenis" alt="Tênis esportivo" />
-                    <p className="product-category">Calçados</p>
-                    <h3>Tênis Esportivo</h3>
-                    <p className="product-rating">⭐⭐⭐⭐☆ (4.5)</p>
-                    <p className="product-price">R$ 299,90</p>
-                    <button className="btn-secondary" onClick={addToCart}>Adicionar ao carrinho</button>
-                </div>
-
-                <div className="product-card">
-                    <img src="https://placehold.co/240x240/3b82f6/ffffff?text=Fone" alt="Fone de ouvido bluetooth" />
-                    <p className="product-category">Eletrônicos</p>
-                    <h3>Fone de Ouvido Bluetooth</h3>
-                    <p className="product-rating">⭐⭐⭐⭐⭐ (4.8)</p>
-                    <p className="product-price">R$ 149,90</p>
-                    <button className="btn-secondary">Adicionar ao carrinho</button>
-                </div>
-
-                <div className="product-card">
-                    <img src="https://placehold.co/240x240/22c55e/ffffff?text=Mochila" alt="Mochila para notebook" />
-                    <p className="product-category">Acessórios</p>
-                    <h3>Mochila para Notebook</h3>
-                    <p className="product-rating">⭐⭐⭐⭐☆ (4.2)</p>
-                    <p className="product-price">R$ 189,90</p>
-                    <button className="btn-secondary">Adicionar ao carrinho</button>
-                </div>
-
-                <div className="product-card">
-                    <img src="https://placehold.co/240x240/f97316/ffffff?text=Relogio" alt="Relógio smartwatch" />
-                    <p className="product-category">Eletrônicos</p>
-                    <h3>Relógio Smartwatch</h3>
-                    <p className="product-rating">⭐⭐⭐⭐⭐ (4.7)</p>
-                    <p className="product-price">R$ 349,90</p>
-                    <button className="btn-secondary">Adicionar ao carrinho</button>
-                </div>
-            </div>
-        </section>
-    )
+export default function Products({ onAddToCart }) {
+  return (
+    <section id="produtos" className="products">
+      <h2>Produtos em destaque</h2>
+      <div className="product-list">
+        {products.map((product) => (
+          <div className="product-card" key={product.id}>
+            <img src={product.image} alt={product.title} />
+            <p className="product-category">{product.category}</p>
+            <h3>{product.title}</h3>
+            <Rating value={product.rating} />
+            <p className="product-price">
+              {product.price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </p>
+            <button className="btn-secondary" onClick={onAddToCart}>
+              Adicionar ao carrinho
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
 }
-
-export default Products
