@@ -42,7 +42,7 @@
 .icon-button {
   position: relative;
   font-size: 20px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .badge {

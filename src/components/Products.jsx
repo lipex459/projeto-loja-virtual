@@ -35,7 +35,7 @@ const products = [
   },
 ]
 
-export default function Products({ onAddToCart }) {
+function Products({ onAddToCart }) {
   return (
     <section id="produtos" className="products">
       <h2>Produtos em destaque</h2>
@@ -61,3 +61,5 @@ export default function Products({ onAddToCart }) {
     </section>
   )
 }
+
+export default Products
